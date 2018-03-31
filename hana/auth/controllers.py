@@ -28,6 +28,8 @@ def github_callback():
     if res.status_code == 200:
         user_data = res.json()
         user = User.query.get(user_data['id'])
+        if user_data['login'] not in current_app.settings.get('ALLOWED_USERS'):
+            abort(401)
         if not user:
             try:
                 user = User(id=user_data['id'], username=user_data['login'])
