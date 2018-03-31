@@ -1,8 +1,12 @@
 from flask import Flask, url_for, redirect
 
-def create_app(config):
+def create_app(config=None):
     app = Flask(__name__, static_url_path='/static')
-    app.config.from_envvar(config)
+    if config:
+        app.config.from_envvar(config)
+    else:
+        from hana import settings
+        app.config.from_object(settings)
 
     from hana.core import db
     db.init_app(app)
