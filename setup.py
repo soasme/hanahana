@@ -22,6 +22,7 @@ setuptools.setup(
         'Flask-SSLify',
         'Flask-SQLAlchemy',
         'PyMySQL',
+        'psycopg2',
     ],
     entry_points='''
         [console_scripts]
